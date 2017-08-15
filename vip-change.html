@@ -5,27 +5,22 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>giant数据</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
 		<link rel="stylesheet" type="text/css" href="css/lxl.css"/>
-		<script src="js/jquery-1.8.3.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/moment.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/setFilter.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vip-change.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function (){
-				//判断当前设备屏幕宽度
-				var deviceWidth = $(document).width();
-				if(deviceWidth > 1000){
-					$("body").addClass("nav-md");
-				}else{
-					$("body").addClass("nav-sm");
-				}
-				//当前文档的高度
-				$("#aside").css("height",$(document).height());
-				$(window).resize(function (){
-					$("#aside").css("height",$(document).height());
-				});
+
 			});
 		</script>
 	</head>
-	<body class="index">
+	<body class="vip-change">
 		<div id="page">
 			<div id="aside">
 				<div class="navbar">
@@ -37,7 +32,7 @@
 					<div class="user-info">
 						<div class="user-img">
 							<div class="user-img-circle">
-								<img src="img/touxiangbg.jpg" alt="" />
+								<img src="img/img.jpg" alt="" />
 							</div>
 						</div>
 						<div class="user-welcome">
@@ -49,8 +44,8 @@
 						<i class="iconfont icon-guanbi"></i>
 					</div>
 					<ul class="nav-slide-menu">
-						<li class="nav-list home-page active">
-							<a>
+						<li class="nav-list home-page">
+							<a href="index.html">
 								<i class="iconfont icon-home"></i>
 								首页
 							</a>
@@ -73,20 +68,20 @@
                                 </li>
                             </ul>
 						</li>
-						<li class="nav-list">
+						<li class="nav-list active">
 							<a>
 								<i class="iconfont icon-shuju"></i>
 								会员
 								<i class="iconfont icon-fangxiangyou"></i>
 							</a>
-							<ul class="child-slide-menu">
+							<ul class="child-slide-menu" style="display: block;">
 								<li>
 									<a href="vip-list.html">会员列表</a>
 								</li>
 								<li>
 									<a href="vip-from.html">会员来源</a>
 								</li>
-								<li>
+								<li class="current">
 									<a href="vip-change.html">会员变化趋势</a>
 								</li>
 							</ul>
@@ -122,43 +117,69 @@
 					</div>
 					<div class="user-manage">
 						<div class="user-content">
-							<img src="img/touxiangbg.jpg" alt="" />
+							<img src="img/img.jpg" alt="" />
 							<span>大熊猫</span>
 							<i class="iconfont icon-fangxiangxia"></i>
 						</div>
 						<ul class="drop-down">
 							<li>帮助</li>
 							<li>个人资料</li>
-							<li id="loginOut">退出</li>
+							<li>退出</li>
 						</ul>
 					</div>
 				</div>
 				<!--头部 结束-->
 				<!--中间内容开始-->
 				<div class="content">
-					<!--数据展示-->
-					<div class="row data-content">
-						<div class="col-md-3 col-sm-6 col-xs-6">
-							<div class="data-item">
-								<p class="data-type">总会员数:</p>
+					<!--查询条件-->
+					<div class="row search-content">
+						<div class="col-md-4">
+							<div class="input-group date-select">
+								<span class="input-group-addon">时间段</span>
+								<input type="text" class="form-control" id="dateInput" />
+								<span class="input-group-btn">
+							        <button class="btn btn-primary" type="button">查询</button>
+							    </span>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-6">
-							<div class="data-item">
-								<p class="data-count" id="allCount">56655</p>
+						<div class="col-md-3 col-sm-4">
+							<div class="input-group filter-select">
+								<span class="input-group-addon">所属区域</span>
+								<select name="" class="form-control areaSelect">
+								</select>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-6">
-							<div class="data-item">
-								<p class="data-type">昨日新增:</p>
+						<div class="col-md-3 col-sm-4">
+							<div class="input-group filter-select">
+								<span class="input-group-addon">用户来源</span>
+								<select name="" class="form-control vipFromSelect">
+									<option value="all">全部</option>
+									<option value="1">捷安特官网</option>
+									<option value="2">捷安特QRcode</option>
+									<option value="3">捷安特旅行社</option>
+									<option value="4">捷安特俱乐部</option>
+									<option value="5">捷安特嘉年华</option>
+									<option value="6">捷安特赛事网站</option>
+									<option value="7">app</option>
+									<option value="8">微信</option>
+								</select>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-6">
-							<div class="data-item">
-								<p class="data-count" id="yesAdd">55</p>
-							</div>
+						<div class="col-md-2 col-sm-4">
+							<button class="btn btn-primary" id="search-btn">查询</button>
 						</div>
 					</div>
+					<!--查询条件-->
+					<!--数据表-->
+					<div class="row data-charts">
+						<div class="result-title">
+							<p style="line-height: 40px;color: #fff;padding-left: 20px;">当前展示的是时间段为 <span>20170515-20170615</span> 期间,区域为<span>区域一</span> ,来自<span>捷安特官网</span>的数据</p>
+						</div>
+						<div id="myEcharts">
+
+						</div>
+					</div>
+					<!--数据表-->
 				</div>
 				<!--中间内容结束-->
 			</div>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>giant大数据|产品评价列表</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
+		<link rel="stylesheet" type="text/css" href="css/lxl.css"/>
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<script src="js/setFilter.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function (){
+				//判断当前设备屏幕宽度
+				var deviceWidth = $(document).width();
+				if(deviceWidth > 1000){
+					$("body").addClass("nav-md");
+				}else{
+					$("body").addClass("nav-sm");
+				}
+				//当前文档的高度
+				$("#aside").css("height",$(document).height());
+				$(window).resize(function (){
+					$("#aside").css("height",$(document).height());
+				});
+//				console.log(moment())
+			});
+		</script>
+	</head>
+	<body class="products-list">
+		<div id="page">
+			<div id="aside">
+				<div class="navbar">
+					<div class="return-giant">
+						<a href="http://www.giant.com.cn">
+						<i class="iconfont icon-fangxiangzuo"></i>
+						<span>返回捷安特官网</span></a>
+					</div>
+					<div class="user-info">
+						<div class="user-img">
+							<div class="user-img-circle">
+								<img src="img/img.jpg" alt="" />
+							</div>
+						</div>
+						<div class="user-welcome">
+							<p>经销商</p>
+							<p>大熊猫</p>
+						</div>
+					</div>
+					<div class="close-btn">
+						<i class="iconfont icon-guanbi"></i>
+					</div>
+					<ul class="nav-slide-menu">
+						<li class="nav-list home-page">
+							<a href="index.html">
+								<i class="iconfont icon-home"></i>
+								首页
+							</a>
+						</li>
+						<li class="nav-list home-page active">
+							<a>
+								<i class="iconfont icon-xiaoxi"></i>
+								产品
+								<i class="iconfont icon-fangxiangyou"></i>
+							</a>
+							<ul class="child-slide-menu" style="display: block;">
+								<li class="current">
+									<a href="productsList.html">产品评价列表</a>
+								</li>
+								<li>
+									<a href="productData2.html">产品销量数据</a>
+								</li>
+								<li>
+									<a href="productData1.html">区域销量数据</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-list">
+							<a>
+								<i class="iconfont icon-shuju"></i>
+								会员
+								<i class="iconfont icon-fangxiangyou"></i>
+							</a>
+							<ul class="child-slide-menu">
+								<li>
+									<a href="vip-list.html">会员列表</a>
+								</li>
+								<li>
+									<a href="vip-from.html">会员来源</a>
+								</li>
+								<li>
+									<a href="vip-change.html">会员变化趋势</a>
+								</li>
+								<li>
+									<a href="vip-bike.html">车主会员比例</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-list">
+							<a>
+								<i class="iconfont icon-shuju"></i>
+								门店
+								<i class="iconfont icon-fangxiangyou"></i>
+							</a>
+							<ul class="child-slide-menu">
+								<li>
+									<a href="storeList.html">服务评价列表</a>
+								</li>
+								<li>
+									<a href="storePoint.html">通路积分列表</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--左侧边栏结束-->
+			<!--右侧内容开始-->
+			<div id="content">
+				<!--头部 开始-->
+				<div class="header">
+					<div class="menu-btn">
+						<i class="iconfont icon-caidan caidan-btn"></i>
+					</div>
+					<div class="header-title">
+						<p>捷安特大数据中心</p>
+					</div>
+					<div class="user-manage">
+						<div class="user-content">
+							<img src="img/img.jpg" alt="" />
+							<span>大熊猫</span>
+							<i class="iconfont icon-fangxiangxia"></i>
+						</div>
+						<ul class="drop-down">
+							<li>帮助</li>
+							<li>个人资料</li>
+							<li id="loginOut">退出</li>
+						</ul>
+					</div>
+				</div>
+				<!--头部 结束-->
+				<!--中间内容开始-->
+				<div class="content">
+					<!--title start -->
+					<div class="row page-title">
+
+					</div>
+					<!--title end -->
+					<!--产品数据-->
+					<div class="row vip-wrapper" style="background: #fff;">
+						<div class="result-title">
+							<p style="line-height: 40px;color: #fff;padding-left: 20px;">产品评价列表</p>
+						</div>
+						<div class="col-md-12 col-sm-12" style="z-index: 9;">
+							<div class="vip-container">
+								<div class="table-responsive">
+									<table class="table table-bordered table-hover">
+										<thead style="background: #e3effd;">
+										<tr style="text-align: center">
+											<th>品牌</th>
+											<th>车系</th>
+											<th>车型</th>
+											<th>外观评价分</th>
+											<th>性能评价分</th>
+											<th>价格评价分</th>
+											<th>评价内容</th>
+											<th>评价会员</th>
+											<th>评价时间</th>
+											<th>总评分</th>
+										</tr>
+										</thead>
+										<tbody>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 page-container">
+							<nav aria-label="Page navigation" style="text-align: center">
+								<ul class="pagination">
+									<li><a href=\"javascript:;\" aria-label=\"Previous\"><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\">1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\">"+ (p-3) +"</a></li><li><a href=\"javascript:;\">"+ (p - 2) +"</a></li><li><a href=\"javascript:;\">"+(p-1)+"</a></li><li><a href=\"javascript:;\">"+p+"</a></li><li><a href=\"javascript:;\">"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\"><span aria-hidden=\"true\">下一页</span></a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<!--会员数据-->
+				</div>
+				<!--中间内容结束-->
+			</div>
+			<!--右侧内容结束-->
+		</div>
+		<script>
+			var data = {
+                "result":"1",
+                "pingJiaCount":"878445",
+                "pingJiaData":[
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不错!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    },
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不错就废了卡萨丁建档立卡房间爱是快乐的来看撒娇福利的空间撒了就付款了的介绍!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    },
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不京东快递伽利略的空间发来撒就逻辑范德萨错!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    },
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不错8888888888888888888888888888888888888888888888!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    },
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不错!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    },
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不错!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    },
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不错!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    },
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不错!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    },
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不错!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    },
+                    {
+                        "proBrand":"giant",
+                        "proBikeModel":"ATX",
+                        "productModel":"ATX 880",
+                        "faceValue":"6.5",
+                        "performance":"7.5",
+                        "priceValue":"4.5",
+                        "pingJiaContent":"很好,很不错!",
+                        "pingUserName":"林子",
+                        "pingDate":"20170523",
+                        "allValue":"9.5"
+                    }
+                ]
+            }
+            //查看详细评价内容
+            function showMoreContent(t,index){
+                $(t).parent().text(data.pingJiaData[index].pingJiaContent);
+            }
+			function VipData(){
+                //请求数据,会员总数,
+                var vipCount;
+                //当前页数
+				var nowPage;
+				//总页数
+				var allPage;
+				//页面是否初始化
+				var isStart = true;
+				if(isStart){
+                    nowPage = 1;
+                    getAjaxData();
+                }
+                //选页
+                window.selectPage = function (n){
+					//console.log(88)
+                    cutPage("596653",n);
+                }
+                //获取后台数据,页面初始化
+				function getAjaxData(){
+//                    $.ajax({
+//						url:"http://mobile.72bike.com/open/fenxiang/we_chat.action",
+//						data:"",
+//						ansyc:false,
+//						dataType:"json",
+//						success:function (result){
+//						    vipCount = result;
+                            showData();
+                            cutPage("596653",nowPage);
+//						}
+//					});
+				}
+				//展示数据
+                function showData() {
+                    var pageData =data.pingJiaData;
+                    for(var i = 0;i < pageData.length;i++){
+                        var tableList = $("<tr style=\"text-align: center;\">" +
+                            "<td>"+pageData[i].brand+"</td>" +
+                            "<td>"+pageData[i].bikeSeries+"</td>" +
+                            "<td>"+pageData[i].bikeModel+"</td>" +
+                            "<td>"+pageData[i].surfaceScore+"</td>" +
+                            "<td>"+pageData[i].performanceScore+"</td>" +
+                            "<td>"+pageData[i].priceScore+"</td>" +
+                            "<td>"+isMore(pageData[i].content,i)+"</td>" +
+                            "<td>"+pageData[i].userName+"</td>" +
+                            "<td>"+pageData[i].date+"</td>" +
+                            "<td>"+pageData[i].allScore+"</td>" +
+                            "</tr>");
+                        $(".vip-container table tbody").append(tableList);
+                    }
+                }
+                //当评价内容字数超过10个字
+                function isMore(str,index){
+				    var temp = "";
+				    if(str.length > 10){
+				        temp = str.slice(0,10)+"...<a href='javascript:;' onclick='showMoreContent(this,"+index+")'>详细</a>";
+                    }else{
+				        temp = str;
+                    }
+                    return temp;
+                }
+				//分页
+				function cutPage(p,n){
+					//获取当前页数
+					p = Math.ceil(p/10);
+					if(n <= 4 && n != "" && n >0){
+						$(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage("+(n-1)+")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\" onclick='selectPage(2)'>2</a></li><li><a href=\"javascript:;\" onclick='selectPage(3)'>3</a></li><li><a href=\"javascript:;\" onclick='selectPage(4)'>4</a></li><li><a href=\"javascript:;\" onclick='selectPage(5)'>5</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\"onclick='selectPage("+p+")'>"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage("+(n+1)+")'><span aria-hidden=\"true\">下一页</span></a></li>");
+						$(".page-container .pagination li").eq(n).addClass("active");
+					}else if(n > 4 && n <= (p-4)){
+						$(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage("+(n-1)+")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(n-1)+")'>"+(n-1)+"</a></li><li class=\"active\"><a href=\"javascript:;\" onclick='selectPage("+n+")'>"+ n +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(n+1)+")'>"+(n+1)+"</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage("+p+")'>"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage("+(n+1)+")'><span aria-hidden=\"true\">下一页</span></a></li>");
+					}else if(n > (p-4) && n <= p){
+						$(".page-container .pagination").html(" <li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage("+(n-1)+")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-4)+")'>"+ (p-4) +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-3)+")'>"+ (p-3) +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-2)+")'>"+ (p - 2) +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-1)+")'>"+(p-1)+"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+p+")'>"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage("+(n+1)+")'><span aria-hidden=\"true\">下一页</span></a></li>");
+						$(".page-container .pagination li").eq(7-(p-n)).addClass("active");
+					}
+				}
+			}
+            VipData();
+		</script>
+	</body>
+</html>

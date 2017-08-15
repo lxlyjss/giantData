@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>giant数据</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
+		<link rel="stylesheet" type="text/css" href="css/lxl.css"/>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <script src="js/setFilter.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function (){
+				//判断当前设备屏幕宽度
+				var deviceWidth = $(document).width();
+				if(deviceWidth > 1000){
+					$("body").addClass("nav-md");
+				}else{
+					$("body").addClass("nav-sm");
+				}
+				//当前文档的高度
+				$("#aside").css("height",$(document).height());
+				$(window).resize(function (){
+					$("#aside").css("height",$(document).height());
+				});
+			});
+		</script>
+	</head>
+	<body class="vip-list">
+		<div class="loading-wrapper" style="display: block;">
+			<div class="spinner"></div>
+		</div>
+		<div id="page">
+			<div id="aside">
+				<div class="navbar">
+					<div class="return-giant">
+						<a href="http://www.giant.com.cn">
+						<i class="iconfont icon-fangxiangzuo"></i>
+						<span>返回捷安特官网</span></a>
+					</div>
+					<div class="user-info">
+						<div class="user-img">
+							<div class="user-img-circle">
+								<img src="img/touxiangbg.jpg" alt="" />
+							</div>
+						</div>
+						<div class="user-welcome">
+							<p></p>
+							<p></p>
+						</div>
+					</div>
+					<div class="close-btn">
+						<i class="iconfont icon-guanbi"></i>
+					</div>
+					<ul class="nav-slide-menu">
+						<li class="nav-list home-page">
+							<a href="index.html">
+								<i class="iconfont icon-home"></i>
+								首页
+							</a>
+						</li>
+						<li class="nav-list home-page">
+							<a>
+								<i class="iconfont icon-xiaoxi"></i>
+								产品
+								<i class="iconfont icon-fangxiangyou"></i>
+							</a>
+							<ul class="child-slide-menu">
+								<li class="current">
+									<a href="productsList.html">产品评价列表</a>
+								</li>
+								<li>
+									<a href="productData2.html">产品销量数据</a>
+								</li>
+								<li>
+									<a href="productData1.html">区域销量数据</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-list active">
+							<a>
+								<i class="iconfont icon-shuju"></i>
+								会员
+								<i class="iconfont icon-fangxiangyou"></i>
+							</a>
+							<ul class="child-slide-menu" style="display: block;">
+								<li class="current">
+									<a href="vip-list.html">会员列表</a>
+								</li>
+								<li>
+									<a href="vip-from.html">会员来源</a>
+								</li>
+								<li>
+									<a href="vip-change.html">会员变化趋势</a>
+								</li>
+							</ul>
+						</li>
+                        <li class="nav-list">
+                            <a>
+                                <i class="iconfont icon-shuju"></i>
+                                门店
+                                <i class="iconfont icon-fangxiangyou"></i>
+                            </a>
+                            <ul class="child-slide-menu">
+                                <li>
+                                    <a href="storeList.html">服务评价列表</a>
+                                </li>
+                                <li>
+                                    <a href="storePoint.html">通路积分列表</a>
+                                </li>
+                            </ul>
+                        </li>
+					</ul>
+				</div>
+			</div>
+			<!--左侧边栏结束-->
+			<!--右侧内容开始-->
+			<div id="content">
+				<!--头部 开始-->
+				<div class="header">
+					<div class="menu-btn">
+						<i class="iconfont icon-caidan caidan-btn"></i>
+					</div>
+					<div class="header-title">
+						<p>捷安特大数据中心</p>
+					</div>
+					<div class="user-manage">
+						<div class="user-content">
+							<img src="img/touxiangbg.jpg" alt="" />
+							<span></span>
+							<i class="iconfont icon-fangxiangxia"></i>
+						</div>
+						<ul class="drop-down">
+							<li>帮助</li>
+							<li>个人资料</li>
+							<li id="loginOut">退出</li>
+						</ul>
+					</div>
+				</div>
+				<!--头部 结束-->
+				<!--中间内容开始-->
+				<div class="content">
+					<!--title start -->
+					<div class="row page-title">
+
+					</div>
+					<!--title end -->
+					<!--查询条件-->
+					<div class="row search-content">
+						<div class="col-md-3 col-xs-9">
+							<div class="input-group filter-select">
+								<span class="input-group-addon">标签</span>
+								<select name="" class="form-control">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3 col-xs-3 search-btn">
+							<button class="btn btn-primary">查询</button>
+						</div>
+					</div>
+					<!--查询条件-->
+					<!--会员数据-->
+					<div class="row vip-wrapper" style="background: #fff;">
+                        <div class="result-title">
+                            <p style="line-height: 40px;color: #fff;padding-left: 20px;">当前展示的是标签为<span id="tagTitle">全部</span>的数据</p>
+                        </div>
+						<div class="col-md-12 col-sm-12" style="z-index: 9;">
+							<div class="vip-container">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead style="background: #e3effd;">
+                                            <tr style="text-align: center;">
+                                                <th>用户名</th>
+                                                <th>昵称</th>
+                                                <th>性别</th>
+                                                <th>电话号码</th>
+                                                <th>邮箱</th>
+                                                <th>用户状态</th>
+                                                <th>注册时间</th>
+                                                <th>来源</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+							</div>
+						</div>
+						<div class="col-md-12 page-container">
+							<nav aria-label="Page navigation" style="text-align: center;">
+								<ul class="pagination">
+									<li><a href=\"javascript:;\" aria-label=\"Previous\"><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\">1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\">"+ (p-3) +"</a></li><li><a href=\"javascript:;\">"+ (p - 2) +"</a></li><li><a href=\"javascript:;\">"+(p-1)+"</a></li><li><a href=\"javascript:;\">"+p+"</a></li><li><a href=\"javascript:;\">"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\"><span aria-hidden=\"true\">下一页</span></a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<!--会员数据-->
+				</div>
+				<!--中间内容结束-->
+			</div>
+			<!--右侧内容结束-->
+		</div>
+		<!--详细信息弹窗-->
+		<div class="moreInfo-wrapper">
+			<div class="row">
+				<div class="panel panel-primary">
+					<div class="panel-heading">详细信息 <span class="pull-right" onclick="$('.moreInfo-wrapper').removeClass('more-open').fadeOut(500)">X</span></div>
+					<div class="panel-body">
+						<table class="table infoTable">
+							<tbody>
+								<tr id="userName">
+									<th>用户名</th>
+									<td></td>
+								</tr>
+								<tr id="realName">
+									<th>姓名</th>
+									<td></td>
+								</tr>
+								<tr id="nickName">
+									<th>昵称</th>
+									<td></td>
+								</tr>
+								<tr id="userSex">
+									<th>性别</th>
+									<td></td>
+								</tr>
+								<tr id="userPicture">
+									<th>用户头像</th>
+									<td></td>
+								</tr>
+								<tr id="userTel">
+									<th>电话号码</th>
+									<td></td>
+								</tr>
+								<tr id="userEmail">
+									<th>邮箱</th>
+									<td></td>
+								</tr>
+								<tr id="userCity">
+									<th>省市区</th>
+									<td></td>
+								</tr>
+								<tr id="userAddress">
+									<th>详细地址</th>
+									<td></td>
+								</tr>
+								<tr id="userStatus">
+									<th>用户状态</th>
+									<td></td>
+								</tr>
+								<tr id="registerDate">
+									<th>注册日期</th>
+									<td></td>
+								</tr>
+								<tr id="userBirthday">
+									<th>生日</th>
+									<td></td>
+								</tr>
+								<tr id="something">
+									<th>备注</th>
+									<td></td>
+								</tr>
+								<tr id="historyPhone">
+									<th>历史手机号</th>
+									<td></td>
+								</tr>
+                                <tr id="userFrom">
+                                    <th>用户来源</th>
+                                    <td></td>
+                                </tr>
+                                <tr id="mobliePhone">
+                                    <th>手机号码</th>
+                                    <td></td>
+                                </tr>
+								<tr id="QRcodeBindDate">
+									<th>QRcode绑定时间</th>
+									<td></td>
+								</tr>
+								<tr id="QRcodeBindCount">
+									<th>QRcode绑定数量</th>
+									<td></td>
+								</tr>
+								<tr id="AppRegisterDate">
+									<th>App注册时间</th>
+									<td></td>
+								</tr>
+								<tr id="firstRideDate">
+									<th>第一次骑行的时间</th>
+									<td></td>
+								</tr>
+                                <tr id="rideRange">
+                                    <th>骑行总里程</th>
+                                    <td></td>
+                                </tr>
+                                <!--徽章列表-->
+                                <tr id="badgeList">
+                                    <th>获得的徽章列表</th>
+                                    <td>
+                                        <span>共获得 <span style="color: red;" id="badgeCount">0</span> 个徽章</span>
+                                        <a href="javascript:;" class="showBtn">展开+</a>
+                                        <table class="table showList" style="margin-top: 10px;">
+                                        </table>
+                                    </td>
+                                </tr>
+								<tr id="joinClub">
+									<th>加入的俱乐部数量及名称</th>
+                                    <td>
+                                        <span>共参加 <span style="color: red;" id="clubCount">0</span> 个俱乐部</span>
+                                        <a href="javascript:;" class="showBtn">展开+</a>
+                                        <table class="table showList" style="margin-top: 10px;">
+                                        </table>
+                                    </td>
+								</tr>
+								<tr id="repairTimes">
+									<th>维修次数及时间</th>
+									<td>
+										<span>共有 <span style="color: red;" id="repairCount">0</span> 次维修记录</span>
+                                        <a href="javascript:;" class="showBtn">展开+</a>
+										<table class="table showList" style="margin-top: 10px;">
+										</table>
+									</td>
+								</tr>
+								<tr id="thirdStation">
+									<th>第三方账户绑定信息</th>
+									<td>
+										<span>共绑定 <span style="color: red;" id="bindCount">0</span> 个第三方账号</span>
+                                        <a href="javascript:;" class="showBtn">展开+</a>
+										<table class="table showList" style="margin-top: 10px;">
+										</table>
+                                    </td>
+								</tr>
+                                <tr id="tagList">
+                                    <th>标签</th>
+									<td>
+										<span>共获得 <span style="color: red;" id="tagCount">0</span> 个标签</span>
+                                        <a href="javascript:;" class="showBtn">展开+</a>
+										<table class="table showList" style="margin-top: 10px;">
+										</table>
+									</td>
+                                </tr>
+								<tr id="point">
+									<th>总积分</th>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(".loading-wrapper").show();
+			var data;
+            //点击查看详细会员信息
+            function readMore(index){
+                $(".moreInfo-wrapper").addClass("open-more").fadeIn(500);
+                var thisData = data.vipData[index];
+                for( var v in thisData ){
+                    if(thisData[v] instanceof Array){
+                        //徽章列表
+                        if(v == "badgeList"){
+                            if(thisData[v] != null && thisData[v] != ""){
+                                $("#badgeCount").text(thisData[v].length);
+                                for(var i = 0; i < thisData[v].length;i++){
+                                    var tempTag = $("<tr><td>"+thisData[v][i].date+"</td><td>"+thisData[v][i].title+"</td></tr>")
+                                    $("#badgeList .showList").append(tempTag);
+                                }
+							}else{
+                                $("#badgeList .showList").empty();
+							}
+                        }
+                        //俱乐部
+                        if(v == "joinClub") {
+                            if (thisData[v] != null && thisData[v] != "") {
+                                $("#clubCount").text(thisData[v].length);
+                                for (var i = 0; i < thisData[v].length; i++) {
+                                    var tempTag = $("<tr><td>" + thisData[v][i].time + "</td><td>" + thisData[v][i].club + "</td></tr>");
+                                    $("#clubList .showList").append(tempTag);
+                                }
+                            }else{
+                                $("#clubList .showList").empty();
+							}
+                        }
+                        //维修次数及时间
+                        if(v == "repairTimes") {
+                            if (thisData[v] != null && thisData[v] != "") {
+                                $("#repairCount").text(thisData[v].length);
+                                for (var i = 0; i < thisData[v].length; i++) {
+                                    var tempTag = $("<tr><td>" + thisData[v][i] + "</td></tr>");
+                                    $("#repairList .showList").append(tempTag);
+                                }
+                            }else{
+                                $("#repairList .showList").empty();
+							}
+                        }
+						//第三方账户绑定信息
+                        if(v == "thirdStation") {
+                            if (thisData[v] != null && thisData[v] != "") {
+                                $("#bindCount").text(thisData[v].length);
+                                for (var i = 0; i < thisData[v].length; i++) {
+                                    var tempTag = $("<tr><td>" + thisData[v][i] + "</td></tr>");
+                                    $("#thirdBind .showList").append(tempTag);
+                                }
+                            }else{
+                                $("#thirdBind .showList").empty();
+							}
+                        }
+                    }else{
+						showAll(v,thisData[v]);
+						function showAll(e,ele) {
+                            //设置图片
+                            if (v == "userPicture") {
+                                if (thisData[v] != null && thisData[v] != "") {
+                                    $("#userPicture>td").html("<img src='" + thisData[v] + "' width='80'/>");
+                                } else {
+                                    $("#userPicture>td").html("");
+                                }
+                            }else if(v == "userStatus"){
+                                thisData[v] === "0" ? $("#userStatus>td").html("启用") : $("#userStatus>td").html("禁用");
+							}else{
+                                $("#"+e+">td").text(ele);
+							}
+						}
+						//
+
+                    }
+                }
+            }
+            //点击展开列表
+			function showList(){
+                $(".showBtn").siblings("table").hide();
+                $(".showBtn").click(function (){
+                    $(this).siblings("table").slideToggle(500).toggleClass("zhankai");
+                    if($(this).siblings("table").hasClass("zhankai")){
+                        $(this).text("收起 - ");
+                    }else{
+                        $(this).text("展开+");
+                    }
+				})
+			}
+            showList();
+			function VipData(){
+                //请求数据,会员总数,
+                var vipCount;
+                //当前页数
+				var nowPage;
+				//总页数
+				var allPage;
+				//页面是否初始化
+				var isStart = true;
+				if(isStart){
+                    nowPage = 1;
+                    getAjaxData(nowPage,"");
+                }
+                //选页
+                window.selectPage = function (n){
+                    $(".loading-wrapper").show();
+                    cutPage(allPage,n);
+                    nowPage = n;
+                    getAjaxData(nowPage,"");
+                };
+				//根据标签查询
+				$(".search-btn .btn").click(function (){
+                    $(".loading-wrapper").show();
+				    var filter = $(".filter-select select").val();
+                    $("#tagTitle").text(filter == ""?"全部":filter);
+                    getAjaxData(nowPage,filter);
+				});
+                //获取标签列表
+                var tagList = [];
+                function getTagList(){
+                    tagList = data.filter.tag;
+                    var tempArr = [];
+                    for(var i = 0; i < tagList.length;i++){
+                        var temp = $("<option value='"+tagList[i].code+"'>"+tagList[i].labelName+"</option>");
+                        tempArr.push(temp);
+                    }
+                    $(".filter-select select").append(tempArr);
+				}
+                //获取后台数据,页面初始化
+				function getAjaxData(n,f){
+                    //添加筛选条件
+                    $.ajax({
+						url:"http://192.168.9.10:8080/giantService/userData/userList",
+						data:{"userId":721048,"page":n,"pageNum":10,"filter":f},
+						async:true,
+						dataType:"json",
+						timeout:20000,
+						success:function (resultData){
+                            $(".loading-wrapper").hide();
+						    data = resultData;
+						    console.log(data);
+						    //获取总会员数
+						    vipCount = data.vipCount;
+						    //获取总页数
+						    allPage = Math.ceil(data.vipCount / 10);
+                            showData(resultData);
+                            cutPage(allPage,nowPage);
+                            getTagList();
+						},
+						error:function (data){
+							console.log(data);
+						}
+					});
+				}
+				//展示数据
+                function showData(data) {
+                    var pageData =data.vipData;
+                    var tableArr = [];
+                    for(var i = 0;i < pageData.length;i++){
+                        var tableList = $("<tr style=\"text-align: center;\">" +
+                            "<td>"+pageData[i].userName+"</td>" +
+                            "<td>"+pageData[i].nickName+"</td>" +
+                            "<td>"+pageData[i].userSex+"</td>" +
+                            "<td>"+pageData[i].userTel+"</td>" +
+                            "<td>"+pageData[i].userEmail+"</td>" +
+                            "<td>"+(pageData[i].userStatus=="0"?"启用":"禁用") +"</td>" +
+                            "<td>"+pageData[i].registerDate+"</td>" +
+                            "<td>"+pageData[i].userFrom+"</td>" +
+                            "<td><a href=\"javascript:;\" onclick=\"readMore("+i+")\">详细</a></td>" +
+                            "</tr>");
+                        tableArr.push(tableList);
+                    }
+                    $(".vip-container table tbody").empty().append(tableArr);
+                }
+				//分页
+				function cutPage(p,n){
+					//获取当前页数
+					if(n <= 4 && n != "" && n >0){
+						$(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage("+(n-1)+")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\" onclick='selectPage(2)'>2</a></li><li><a href=\"javascript:;\" onclick='selectPage(3)'>3</a></li><li><a href=\"javascript:;\" onclick='selectPage(4)'>4</a></li><li><a href=\"javascript:;\" onclick='selectPage(5)'>5</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\"onclick='selectPage("+p+")'>"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage("+(n+1)+")'><span aria-hidden=\"true\">下一页</span></a></li>");
+						$(".page-container .pagination li").eq(n).addClass("active");
+					}else if(n > 4 && n <= (p-4)){
+						$(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage("+(n-1)+")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(n-1)+")'>"+(n-1)+"</a></li><li class=\"active\"><a href=\"javascript:;\" onclick='selectPage("+n+")'>"+ n +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(n+1)+")'>"+(n+1)+"</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage("+p+")'>"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage("+(n+1)+")'><span aria-hidden=\"true\">下一页</span></a></li>");
+					}else if(n > (p-4) && n <= p){
+						$(".page-container .pagination").html(" <li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage("+(n-1)+")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-4)+")'>"+ (p-4) +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-3)+")'>"+ (p-3) +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-2)+")'>"+ (p - 2) +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-1)+")'>"+(p-1)+"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+p+")'>"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage("+(n+1)+")'><span aria-hidden=\"true\">下一页</span></a></li>");
+						$(".page-container .pagination li").eq(7-(p-n)).addClass("active");
+					}
+				}
+			}
+            VipData();
+		</script>
+	</body>
+</html>

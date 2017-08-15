@@ -48,6 +48,46 @@
 .icon-jiajian-:before {
   content: "\e666"; }
 
+.loading-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 99999999;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: none; }
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #2A3F54;
+  -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+  animation: rotateplane 1.2s infinite ease-in-out; }
+
+@-webkit-keyframes rotateplane {
+  0% {
+    -webkit-transform: perspective(120px); }
+  50% {
+    -webkit-transform: perspective(120px) rotateY(180deg); }
+  100% {
+    -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg); } }
+@keyframes rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
 a {
   text-decoration: none !important;
   cursor: pointer; }
@@ -243,6 +283,12 @@ html, body {
 #content .content {
   width: 100%;
   padding: 0 15px; }
+  #content .content .result-title {
+    background-color: #2A3F54;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px; }
   #content .content .data-content {
     margin: 10px 0px;
     padding: 10px 0;
@@ -259,12 +305,9 @@ html, body {
         color: #73879C;
         margin-bottom: 0; }
       #content .content .data-content .data-item .data-type {
-        font-size: 16px; }
+        font-size: 24px; }
       #content .content .data-content .data-item .data-count {
-        font-size: 30px; }
-      #content .content .data-content .data-item .data-bottom {
-        font-size: 16px;
-        margin-bottom: 0; }
+        font-size: 24px; }
   #content .content .search-content {
     width: 100%;
     background: #fff;
@@ -283,6 +326,14 @@ html, body {
     background-color: #fff;
     margin: 0 0px 10px; }
     #content .content .data-charts #myEcharts {
+      width: 100%;
+      height: 400px;
+      padding: 15px; }
+    #content .content .data-charts #myEcharts2 {
+      width: 100%;
+      height: 400px;
+      padding: 15px; }
+    #content .content .data-charts #myEcharts3 {
       width: 100%;
       height: 400px;
       padding: 15px; }
@@ -384,8 +435,78 @@ html, body {
       #content .content .data-charts #myEcharts {
         width: 100%;
         height: 400px;
+        padding: 15px; }
+      #content .content .data-charts #myEcharts2 {
+        width: 100%;
+        height: 400px;
+        padding: 15px; }
+      #content .content .data-charts #myEcharts3 {
+        width: 100%;
+        height: 400px;
         padding: 15px; } }
 #content .content .data-content .fenlei {
   margin-bottom: 10px; }
+
+.vip-list .vip-wrapper, .products-list .vip-wrapper {
+  margin: 15px 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px; }
+  .vip-list .vip-wrapper div .vip-container table thead tr th, .products-list .vip-wrapper div .vip-container table thead tr th {
+    text-align: center; }
+.vip-list .search-content .filter-select, .products-list .search-content .filter-select {
+  padding: 10px 0; }
+.vip-list .search-content .search-btn, .products-list .search-content .search-btn {
+  margin: 10px 0; }
+.vip-list .moreInfo-wrapper, .products-list .moreInfo-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  display: none;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px; }
+  .vip-list .moreInfo-wrapper .row, .products-list .moreInfo-wrapper .row {
+    padding: 15px 0;
+    max-width: 600px;
+    margin: 0 auto; }
+    .vip-list .moreInfo-wrapper .row .panel .panel-heading span, .products-list .moreInfo-wrapper .row .panel .panel-heading span {
+      cursor: pointer; }
+    .vip-list .moreInfo-wrapper .row .panel .panel-body .infoTable tr .showBtn, .products-list .moreInfo-wrapper .row .panel .panel-body .infoTable tr .showBtn {
+      cursor: pointer;
+      float: right; }
+
+.vip-change .search-content .filter-select {
+  margin: 10px 0; }
+.vip-change .search-content #search-btn {
+  margin: 10px 0; }
+
+.vip-from .search-content .filter-select {
+  margin: 10px 0; }
+.vip-from .search-content #search-btn {
+  margin: 10px 0; }
+
+.products-list .vip-wrapper {
+  padding: 0 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px; }
+.products-list .search-content .filter-select {
+  margin: 10px 0; }
+
+.products-data1 .search-content .filter-select {
+  margin: 10px 0; }
+.products-data1 #search-btn {
+  margin: 10px 0; }
+
+.products-data2 .search-content .filter-select {
+  margin: 10px 0; }
+.products-data2 #search-btn {
+  margin: 10px 0; }
 
 /*# sourceMappingURL=lxl.css.map */

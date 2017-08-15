@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>giant数据</title>
+		<title>giant数据|会员来源</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/daterangepicker.css"/>
 		<link rel="stylesheet" type="text/css" href="css/lxl.css"/>
@@ -12,7 +12,6 @@
 		<script src="js/moment.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/data.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function (){
 				//判断当前设备屏幕宽度
@@ -37,7 +36,7 @@
 	                }, 
 				    ranges : {
 					    //'最近1小时': [moment().subtract('hours',1), moment()],
-					    '最近3日': [moment().subtract('days', 2),moment()],
+					    "最近3日": [moment().subtract('days', 2),moment()],
 					    '最近7日': [moment().subtract('days', 6), moment()],
 					    '最近30日': [moment().subtract('days', 29), moment()]
 				  },
@@ -45,7 +44,6 @@
   					//格式化日期显示框
 				    $('#dateInput').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
 				});
-				//console.log($.fn.daterangepicker())
 			});
 		</script>
 	</head>
@@ -103,14 +101,14 @@
 								数据统计
 								<i class="iconfont icon-fangxiangyou"></i>
 							</a>
-							<ul class="child-slide-menu open" style="display: block;">
-								<li>
+							<ul class="child-slide-menu" style="display: block">
+								<li class="current">
 									<a href="vip.html">会员数据</a>
 								</li>
 								<li>
 									<a href="index.html">产品数据</a>
 								</li>
-								<li class="current">
+								<li>
 									<a href="ind.html">门店数据</a>
 								</li>
 							</ul>
@@ -147,44 +145,33 @@
 				<div class="content">
 					<!--数据展示-->
 					<div class="row data-content">
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="input-group fenlei">
-								<span class="input-group-addon">全部品牌</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">品牌1</option>
-									<option value="77">品牌2</option>
-									<option value="77">品牌3</option>
-									<option value="77">品牌4</option>
-								</select>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="data-item">
+								<p class="data-type">总会员数</p>
+								<p class="data-count">56655</p>
+								<p class="data-bottom">3%</p>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="input-group fenlei">
-								<span class="input-group-addon">全部门店</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">门店1</option>
-									<option value="77">门店2</option>
-									<option value="77">门店3</option>
-									<option value="77">门店4</option>
-								</select>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="data-item">
+								<p class="data-type">新增总数</p>
+								<p class="data-count">55</p>
+								<p class="data-bottom">3%</p>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="input-group fenlei">
-								<span class="input-group-addon">全部车型</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">车型1</option>
-									<option value="77">车型2</option>
-									<option value="77">车型3</option>
-									<option value="77">车型4</option>
-								</select>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="data-item">
+								<p class="data-type">流失总数</p>
+								<p class="data-count">35</p>
+								<p class="data-bottom">3%</p>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<button class="btn btn-primary">查询</button>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="data-item">
+								<p class="data-type">净增人数</p>
+								<p class="data-count">20</p>
+								<p class="data-bottom">3%</p>
+							</div>
 						</div>
 					</div>
 					<!--数据展示-->
@@ -214,12 +201,6 @@
 						<div id="myEcharts">
 							
 						</div>
-                        <div id="myEcharts2">
-
-                        </div>
-                        <div id="myEcharts3">
-
-                        </div>
 					</div>
 					<!--数据表-->
 				</div>
@@ -228,8 +209,52 @@
 			<!--右侧内容结束-->
 		</div>
 		<script>
-			var sc = document.getElementById("content");
-            console.log(sc);
+			var myEcharts = document.getElementById("myEcharts");
+			var Echarts = echarts.init(myEcharts);
+			var options = {
+			    title:{
+			        text:"捷安特会员来源",
+					x:"center"
+				},
+				toolbox:{
+
+				},
+				tooltip:{
+			        trigger:"item",
+					formatter:"{a} <br/> {b} : {c} ({d}%)"
+				},
+				legend:{
+			        orient:"vertical",
+					left:"left",
+					data:[
+					    "捷安特官网","app","QRcode","俱乐部","微信"
+					]
+				},
+				series:[{
+			        name:"访问来源",
+					type:"pie",
+					radius:"55%",
+					center:["50%","50%"],
+					data:[
+						{value:565,name:"捷安特官网"},
+                        {value:965,name:"app"},
+                        {value:65,name:"QRcode"},
+                        {value:165,name:"俱乐部"},
+                        {value:1565,name:"微信"},
+					],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+				}]
+			}
+			Echarts.setOption(options);
+            $(window).resize(function () {
+                Echarts.resize();
+            })
 		</script>
 	</body>
 </html>

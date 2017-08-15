@@ -1,7 +1,7 @@
 $(function (){
 	//初始化折线图
 	var myEcharts = echarts.init(document.getElementById("myEcharts"));
-	var optionData = {
+    var optionData = {
 		color: ["#62caec", "#ff5752", "#61a0a8", "#d48265", "#91c7ae", "#749f83", "#ca8622", "#bda29a", "#6e7074", "#546570", "#c4ccd3"],
 		toolbox:{
 			show:true,
@@ -81,7 +81,7 @@ $(function (){
 		},
 		series: [{
 			name: "新增人数",
-			type: "line",
+			type: "bar",
 			smooth: true,
 			data: [2, 10, 15, 20, 21, 21, 21, 30, 38, 40, 40, 200, 55, 55, 60, 61, 61, 70, 71, 72, 73, 77, 79, 79, 80, 81, 81, 86, 86, 87, 150, 98, 500, 102, 102, 1003, 250, 526]
 		}]
@@ -92,7 +92,7 @@ $(function (){
 		},
 		series: [{
 			name: "流失人数",
-			type: "line",
+			type: "bar",
 			smooth: true,
 			data: [22, 20, 35, 20, 21, 21, 41, 30, 38, 40, 100, 60, 55, 55, 60, 61, 61, 70, 71, 72, 73, 77, 79, 19, 80, 11, 81, 86, 86, 87, 30, 98, 60, 102, 102, 103, 50, 26]
 		}]
@@ -120,11 +120,19 @@ $(function (){
 		}]
 	};
 	var newData = $.extend({},optionData,tmp_chartoption_leiji);
-	myEcharts.setOption(newData);
-	setTimeout(function (){
+	var newData2 = $.extend({},optionData,tmp_chartoption_liushi);
+    var newData3 = $.extend({},optionData,tmp_chartoption_jingzeng);
+    myEcharts.setOption(newData);
+    myEcharts2.setOption(newData2);
+    myEcharts3.setOption(newData3);
+    setTimeout(function (){
 		myEcharts.resize();
+        myEcharts2.resize();
+        myEcharts3.resize();
 	},200);
 	$(window).resize(function (){
 		myEcharts.resize();
+        myEcharts2.resize();
+        myEcharts3.resize();
 	})
 })

@@ -11,8 +11,8 @@
 		<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/moment.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/setFilter.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/data.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(function (){
 				//判断当前设备屏幕宽度
@@ -27,29 +27,28 @@
 				$(window).resize(function (){
 					$("#aside").css("height",$(document).height());
 				});
-//				console.log(moment())
 				//时间选择
 				$('#dateInput').daterangepicker({
 					//最大时间
-				    maxDate: moment(),
+				    maxDate: moment().subtract(1,'days'),
+					startDate: moment().subtract(30,'days'),
+					endDate: moment().subtract(1,'days'),
 				    locale: {  
 				    	format : 'YYYY/MM/DD',
 	                }, 
 				    ranges : {
-					    //'最近1小时': [moment().subtract('hours',1), moment()],
-					    '最近3日': [moment().subtract('days', 2),moment()],
-					    '最近7日': [moment().subtract('days', 6), moment()],
-					    '最近30日': [moment().subtract('days', 29), moment()]
+					    "最近3日": [moment().subtract(3,'days'),moment()],
+					    '最近7日': [moment().subtract(7,'days'), moment()],
+					    '最近30日': [moment().subtract(30,'days'), moment()]
 				  },
 				}, function(start, end, label) {
   					//格式化日期显示框
 				    $('#dateInput').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
 				});
-				//console.log($.fn.daterangepicker())
 			});
 		</script>
 	</head>
-	<body>
+	<body class="products-data2">
 		<div id="page">
 			<div id="aside">
 				<div class="navbar">
@@ -61,12 +60,12 @@
 					<div class="user-info">
 						<div class="user-img">
 							<div class="user-img-circle">
-								<img src="img/img.jpg" alt="" />
+								<img src="img/touxiangbg.jpg" alt="" />
 							</div>
 						</div>
 						<div class="user-welcome">
-							<p>经销商</p>
-							<p>大熊猫</p>
+							<p></p>
+							<p></p>
 						</div>
 					</div>
 					<div class="close-btn">
@@ -74,44 +73,59 @@
 					</div>
 					<ul class="nav-slide-menu">
 						<li class="nav-list home-page">
-							<a>
+							<a href="index.html">
 								<i class="iconfont icon-home"></i>
 								首页
 							</a>
 						</li>
-						<li class="nav-list home-page">
+						<li class="nav-list home-page active">
 							<a>
 								<i class="iconfont icon-xiaoxi"></i>
-								消息管理
+								产品
 								<i class="iconfont icon-fangxiangyou"></i>
 							</a>
-							<ul class="child-slide-menu">
+							<ul class="child-slide-menu" style="display: block;">
+								<li>
+									<a href="productsList.html">产品评价列表</a>
+								</li>
 								<li class="current">
-									<a href="#">已发消息</a>
+									<a href="productData2.html">产品销量数据</a>
 								</li>
 								<li>
-									<a href="#">消息统计</a>
-								</li>
-								<li>
-									<a href="#">积分记录</a>
+									<a href="productData1.html">区域销量数据</a>
 								</li>
 							</ul>
 						</li>
-						<li class="nav-list active">
+						<li class="nav-list">
 							<a>
 								<i class="iconfont icon-shuju"></i>
-								数据统计
+								会员
 								<i class="iconfont icon-fangxiangyou"></i>
 							</a>
-							<ul class="child-slide-menu open" style="display: block;">
+							<ul class="child-slide-menu">
 								<li>
-									<a href="vip.html">会员数据</a>
+									<a href="vip-list.html">会员列表</a>
 								</li>
 								<li>
-									<a href="index.html">产品数据</a>
+									<a href="vip-from.html">会员来源</a>
 								</li>
-								<li class="current">
-									<a href="ind.html">门店数据</a>
+								<li>
+									<a href="vip-change.html">会员变化趋势</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-list">
+							<a>
+								<i class="iconfont icon-shuju"></i>
+								门店
+								<i class="iconfont icon-fangxiangyou"></i>
+							</a>
+							<ul class="child-slide-menu">
+								<li>
+									<a href="storeList.html">服务评价列表</a>
+								</li>
+								<li>
+									<a href="storePoint.html">通路积分列表</a>
 								</li>
 							</ul>
 						</li>
@@ -131,66 +145,23 @@
 					</div>
 					<div class="user-manage">
 						<div class="user-content">
-							<img src="img/img.jpg" alt="" />
-							<span>大熊猫</span>
+							<img src="img/touxiangbg.jpg" alt="" />
+							<span></span>
 							<i class="iconfont icon-fangxiangxia"></i>
 						</div>
 						<ul class="drop-down">
 							<li>帮助</li>
 							<li>个人资料</li>
-							<li>退出</li>
+							<li id="loginOut">退出</li>
 						</ul>
 					</div>
 				</div>
 				<!--头部 结束-->
 				<!--中间内容开始-->
 				<div class="content">
-					<!--数据展示-->
-					<div class="row data-content">
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="input-group fenlei">
-								<span class="input-group-addon">全部品牌</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">品牌1</option>
-									<option value="77">品牌2</option>
-									<option value="77">品牌3</option>
-									<option value="77">品牌4</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="input-group fenlei">
-								<span class="input-group-addon">全部门店</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">门店1</option>
-									<option value="77">门店2</option>
-									<option value="77">门店3</option>
-									<option value="77">门店4</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="input-group fenlei">
-								<span class="input-group-addon">全部车型</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">车型1</option>
-									<option value="77">车型2</option>
-									<option value="77">车型3</option>
-									<option value="77">车型4</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<button class="btn btn-primary">查询</button>
-						</div>
-					</div>
-					<!--数据展示-->
 					<!--查询条件-->
 					<div class="row search-content">
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="input-group date-select">
 								<span class="input-group-addon">时间段</span>
 								<input type="text" class="form-control" id="dateInput" />
@@ -199,37 +170,61 @@
 							    </span>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-primary">全部用户</button>
-							    <button type="button" class="btn btn-default">新增人数</button>
-							    <button type="button" class="btn btn-default">流失人数</button>
-							    <button type="button" class="btn btn-default">净增用户</button>
+						<div class="col-md-3 col-sm-4">
+							<div class="input-group filter-select">
+								<span class="input-group-addon">SBU</span>
+								<select name="" class="form-control sbuSelect">
+									<option value="all">全部</option>
+								</select>
 							</div>
+						</div>
+						<div class="col-md-3 col-sm-4">
+							<div class="input-group filter-select">
+								<span class="input-group-addon">经销商</span>
+								<select name="" class="form-control dealerSelect">
+									<option value="all">全部</option>
+								</select>
+							</div>
+						</div>
+                        <div class="col-md-3 col-sm-4">
+                            <div class="input-group filter-select">
+                                <span class="input-group-addon">门店</span>
+                                <select name="" class="form-control storeSelect">
+                                    <option value="all">全部</option>
+                                </select>
+                            </div>
+                        </div>
+						<div class="col-md-2 col-sm-4">
+							<button class="btn btn-primary" id="search-btn">查询</button>
 						</div>
 					</div>
 					<!--查询条件-->
 					<!--数据表-->
 					<div class="row data-charts">
-						<div id="myEcharts">
-							
+						<div class="result-title">
+							<p style="line-height: 40px;color: #fff;padding-left: 20px;">当前展示的是时间段为 <span>20170515-20170615</span> 期间,区域为<span>区域一</span> ,来自<span>捷安特官网</span>的数据</p>
 						</div>
-                        <div id="myEcharts2">
+						<div id="myEcharts">
 
-                        </div>
-                        <div id="myEcharts3">
-
-                        </div>
+						</div>
 					</div>
 					<!--数据表-->
+					<!--查询条件-->
+					<div class="row search-content">
+						<div class="col-md-3 col-sm-4">
+							<button class="btn btn-primary">品牌</button>
+							<button class="btn btn-default">车系</button>
+						</div>
+						<div class="col-md-3 col-sm-4">
+
+						</div>
+					</div>
+					<!--查询条件-->
 				</div>
 				<!--中间内容结束-->
 			</div>
 			<!--右侧内容结束-->
 		</div>
-		<script>
-			var sc = document.getElementById("content");
-            console.log(sc);
-		</script>
+        <script src="js/productsData2.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

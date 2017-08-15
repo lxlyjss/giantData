@@ -37,7 +37,7 @@
 	                }, 
 				    ranges : {
 					    //'最近1小时': [moment().subtract('hours',1), moment()],
-					    '最近3日': [moment().subtract('days', 2),moment()],
+					    "最近3日": [moment().subtract('days', 2),moment()],
 					    '最近7日': [moment().subtract('days', 6), moment()],
 					    '最近30日': [moment().subtract('days', 29), moment()]
 				  },
@@ -45,7 +45,6 @@
   					//格式化日期显示框
 				    $('#dateInput').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
 				});
-				//console.log($.fn.daterangepicker())
 			});
 		</script>
 	</head>
@@ -100,18 +99,21 @@
 						<li class="nav-list active">
 							<a>
 								<i class="iconfont icon-shuju"></i>
-								数据统计
+								会员
 								<i class="iconfont icon-fangxiangyou"></i>
 							</a>
-							<ul class="child-slide-menu open" style="display: block;">
+							<ul class="child-slide-menu" style="display: block;">
 								<li>
-									<a href="vip.html">会员数据</a>
+									<a href="vip-list.html">会员列表</a>
 								</li>
 								<li>
-									<a href="index.html">产品数据</a>
+									<a href="vip-from.html">会员来源</a>
+								</li>
+								<li>
+									<a href="vip-change.html">会员变化趋势</a>
 								</li>
 								<li class="current">
-									<a href="ind.html">门店数据</a>
+									<a href="vip-bike.html">车主会员比例</a>
 								</li>
 							</ul>
 						</li>
@@ -147,44 +149,33 @@
 				<div class="content">
 					<!--数据展示-->
 					<div class="row data-content">
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="input-group fenlei">
-								<span class="input-group-addon">全部品牌</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">品牌1</option>
-									<option value="77">品牌2</option>
-									<option value="77">品牌3</option>
-									<option value="77">品牌4</option>
-								</select>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="data-item">
+								<p class="data-type">总会员数</p>
+								<p class="data-count">56655</p>
+								<p class="data-bottom">3%</p>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="input-group fenlei">
-								<span class="input-group-addon">全部门店</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">门店1</option>
-									<option value="77">门店2</option>
-									<option value="77">门店3</option>
-									<option value="77">门店4</option>
-								</select>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="data-item">
+								<p class="data-type">新增总数</p>
+								<p class="data-count">55</p>
+								<p class="data-bottom">3%</p>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="input-group fenlei">
-								<span class="input-group-addon">全部车型</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">车型1</option>
-									<option value="77">车型2</option>
-									<option value="77">车型3</option>
-									<option value="77">车型4</option>
-								</select>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="data-item">
+								<p class="data-type">流失总数</p>
+								<p class="data-count">35</p>
+								<p class="data-bottom">3%</p>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<button class="btn btn-primary">查询</button>
+						<div class="col-md-3 col-sm-6 col-xs-6">
+							<div class="data-item">
+								<p class="data-type">净增人数</p>
+								<p class="data-count">20</p>
+								<p class="data-bottom">3%</p>
+							</div>
 						</div>
 					</div>
 					<!--数据展示-->
@@ -214,12 +205,12 @@
 						<div id="myEcharts">
 							
 						</div>
-                        <div id="myEcharts2">
+						<div id="myEcharts2">
 
-                        </div>
-                        <div id="myEcharts3">
+						</div>
+						<div id="myEcharts3">
 
-                        </div>
+						</div>
 					</div>
 					<!--数据表-->
 				</div>
@@ -227,9 +218,5 @@
 			</div>
 			<!--右侧内容结束-->
 		</div>
-		<script>
-			var sc = document.getElementById("content");
-            console.log(sc);
-		</script>
 	</body>
 </html>

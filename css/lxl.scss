@@ -1,5 +1,4 @@
-@charset "utf-8";
-//图标
+@charset "UTF-8";
 @font-face {
   font-family: "iconfont";
   src: url('../fonts/iconfont.eot?t=1500521096696'); 
@@ -42,6 +41,49 @@
 .icon-zongjichengyuanshu:before { content: "\e704"; }
 
 .icon-jiajian-:before { content: "\e666"; }
+//载入动画
+.loading-wrapper{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index:99999999;
+    top: 0;
+    left: 0;
+    background-color:rgba(255,255,255,.8);
+    display: none;
+}
+.spinner {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #2A3F54;
+    -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+    animation: rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes rotateplane {
+    0% { -webkit-transform: perspective(120px);}
+    50% { -webkit-transform: perspective(120px) rotateY(180deg);}
+    100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg);}
+}
+
+@keyframes rotateplane {
+    0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    } 50% {
+          transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+          -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+      } 100% {
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        }
+}
 
 @mixin clearBoth{
     display: block;
@@ -247,6 +289,7 @@ html,body{
                 line-height: 60px;
                 font-size: 24px;
                 margin: 0;
+
             }
         }
         .user-manage{
@@ -301,6 +344,17 @@ html,body{
     .content{
         width: 100%;
         padding: 0 15px;
+        //page-title
+        .page-title{
+
+        }
+        .result-title{
+          background-color: #2A3F54;
+          border-top-left-radius:8px;
+          border-top-right-radius:8px;
+          -webkit-border-top-left-radius:8px;
+          -webkit-border-top-right-radius:8px;
+        }
         //数据内容
         .data-content{
             margin: 10px 0px;
@@ -320,14 +374,10 @@ html,body{
                     margin-bottom: 0;
                 }
                 .data-type{
-                    font-size: 16px;
+                    font-size: 24px;
                 }
                 .data-count{
-                    font-size: 30px;
-                }
-                .data-bottom{
-                    font-size: 16px;
-                    margin-bottom: 0;
+                    font-size: 24px;
                 }
             }
         }
@@ -363,7 +413,16 @@ html,body{
                 width: 100%;
                 height: 400px;
                 padding: 15px;
-                
+            }
+            #myEcharts2{
+                width: 100%;
+                height: 400px;
+                padding: 15px;
+            }
+            #myEcharts3{
+                width: 100%;
+                height: 400px;
+                padding: 15px;
             }
         }
     }
@@ -544,6 +603,18 @@ html,body{
                     padding: 15px;
             
                 }
+                #myEcharts2{
+                    width: 100%;
+                    height: 400px;
+                    padding: 15px;
+
+                }
+                #myEcharts3{
+                    width: 100%;
+                    height: 400px;
+                    padding: 15px;
+
+                }
             }
         }
     }
@@ -556,5 +627,126 @@ html,body{
                 margin-bottom: 10px;
             }
         }
+    }
+}
+//会员列表页面
+.vip-list,.products-list{
+    .vip-wrapper{
+        margin: 15px 0;
+        border-top-left-radius:8px;
+        border-top-right-radius:8px;
+        -webkit-border-top-left-radius:8px;
+        -webkit-border-top-right-radius:8px;
+        div{
+            .vip-container{
+                table{
+                    thead{
+                        tr{
+                            th{
+                                text-align: center;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+    .search-content{
+        .filter-select{
+            padding: 10px 0;
+        }
+        .search-btn{
+            margin:10px 0;
+        }
+    }
+    //查看详细信息弹框
+    .moreInfo-wrapper{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow-y: scroll;
+        display: none;
+        z-index:99999;
+        background: rgba(0,0,0,.5);
+        padding:15px;
+        .row{
+            padding:15px 0.;
+            max-width: 600px;
+            margin:0 auto;
+            .panel{
+                .panel-heading{
+                    span{
+                        cursor: pointer;
+                    }
+                }
+              .panel-body{
+                .infoTable{
+                  tr{
+                    .showBtn{
+                      cursor: pointer;
+                      float: right;
+                    }
+                  }
+                }
+              }
+            }
+        }
+    }
+}
+//会员数据变化页面
+.vip-change{
+  .search-content{
+    .filter-select{
+      margin:10px 0;
+    }
+    #search-btn{
+      margin:10px 0;
+    }
+  }
+}
+//会员来源页面
+.vip-from{
+  .search-content{
+    .filter-select{
+      margin:10px 0;
+    }
+    #search-btn{
+      margin:10px 0;
+    }
+  }
+}
+
+//产品评价列表
+.products-list{
+  .vip-wrapper{
+    padding:0 0;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+    -webkit-border-top-left-radius:8px;
+    -webkit-border-top-right-radius:8px;
+  }
+    .search-content .filter-select{
+        margin:10px 0;
+    }
+}
+//产品数据列表
+.products-data1{
+    .search-content .filter-select{
+        margin:10px 0;
+    }
+    #search-btn{
+        margin:10px 0;
+    }
+}
+
+.products-data2{
+    .search-content .filter-select{
+        margin:10px 0;
+    }
+    #search-btn{
+        margin:10px 0;
     }
 }
