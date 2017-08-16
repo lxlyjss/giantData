@@ -9,8 +9,10 @@
 		<link rel="stylesheet" type="text/css" href="css/lxl.css"/>
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 		<script src="js/setFilter.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
+		<script src="js/moment.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
 			$(function (){
 				//判断当前设备屏幕宽度
 				var deviceWidth = $(document).width();
@@ -27,7 +29,10 @@
 			});
 		</script>
 	</head>
-	<body class="products-list">
+	<body class="service-list">
+        <div class="loading-wrapper" style="display: block;">
+            <div class="spinner"></div>
+        </div>
 		<div id="page">
 			<div id="aside">
 				<div class="navbar">
@@ -51,69 +56,66 @@
 						<i class="iconfont icon-guanbi"></i>
 					</div>
 					<ul class="nav-slide-menu">
-						<li class="nav-list home-page">
-							<a>
-								<i class="iconfont icon-home"></i>
-								首页
-							</a>
-						</li>
-						<li class="nav-list home-page">
-							<a>
-								<i class="iconfont icon-xiaoxi"></i>
-								门店管理
-								<i class="iconfont icon-fangxiangyou"></i>
-							</a>
-							<ul class="child-slide-menu">
-								<li class="current">
-									<a href="service-list.html">服务评价列表</a>
-								</li>
-								<li>
-									<a href="javascript:;">通路积分列表</a>
-								</li>
-								<li>
-									<a href="javascript:;">积分记录</a>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-list active">
-							<a>
-								<i class="iconfont icon-shuju"></i>
-								会员管理
-								<i class="iconfont icon-fangxiangyou"></i>
-							</a>
-							<ul class="child-slide-menu" style="display: block;">
-								<li class="current">
-									<a href="vip-list.html">会员列表</a>
-								</li>
-								<li>
-									<a href="vip-from.html">会员来源</a>
-								</li>
-								<li>
-									<a href="vip-change.html">会员变化趋势</a>
-								</li>
-								<li>
-									<a href="vip-bike.html">车主会员比例</a>
-								</li>
-							</ul>
-						</li>
-						<li class="nav-list active">
-							<a>
-								<i class="iconfont icon-shuju"></i>
-								产品管理
-								<i class="iconfont icon-fangxiangyou"></i>
-							</a>
-							<ul class="child-slide-menu" style="display: block;">
-								<li>
-									<a href="products-charts.html">产品销售数据</a>
-								</li>
-								<li class="current">
-									<a href="productsList.html">产品评价列表</a>
-								</li>
-								<li class="current">
-									<a href="products-pingjia.html">产品评价数据</a>
-								</li>
-							</ul>
-						</li>
+                        <li class="nav-list home-page">
+                            <a href="index.html">
+                                <i class="iconfont icon-home"></i>
+                                首页
+                            </a>
+                        </li>
+                        <li class="nav-list home-page">
+                            <a>
+                                <i class="iconfont icon-xiaoxi"></i>
+                                产品
+                                <i class="iconfont icon-fangxiangyou"></i>
+                            </a>
+                            <ul class="child-slide-menu">
+                                <li class="current">
+                                    <a href="productsList.html">产品评价列表</a>
+                                </li>
+                                <li>
+                                    <a href="productData2.html">产品销量数据</a>
+                                </li>
+                                <li>
+                                    <a href="productData1.html">区域销量数据</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-list">
+                            <a>
+                                <i class="iconfont icon-shuju"></i>
+                                会员
+                                <i class="iconfont icon-fangxiangyou"></i>
+                            </a>
+                            <ul class="child-slide-menu">
+                                <li>
+                                    <a href="vip-list.html">会员列表</a>
+                                </li>
+                                <li>
+                                    <a href="vip-from.html">会员来源</a>
+                                </li>
+                                <li>
+                                    <a href="vip-change.html">会员变化趋势</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-list active">
+                            <a>
+                                <i class="iconfont icon-xiaoxi"></i>
+                                门店
+                                <i class="iconfont icon-fangxiangyou"></i>
+                            </a>
+                            <ul class="child-slide-menu" style="display: block;">
+                                <li class="current">
+                                    <a href="service-list.html">服务评价列表</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">通路积分列表</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">积分记录</a>
+                                </li>
+                            </ul>
+                        </li>
 					</ul>
 				</div>
 			</div>
@@ -137,7 +139,7 @@
 						<ul class="drop-down">
 							<li>帮助</li>
 							<li>个人资料</li>
-							<li>退出</li>
+							<li><a href="http://www.giant.com.cn/front/loginout"></a>退出</li>
 						</ul>
 					</div>
 				</div>
@@ -154,44 +156,32 @@
 						<div class="col-md-3">
 							<div class="input-group filter-select">
 								<span class="input-group-addon">区域</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">区域1</option>
-									<option value="77">区域2</option>
-									<option value="77">区域3</option>
-									<option value="77">区域4</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="input-group filter-select">
-								<span class="input-group-addon">门店类型</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">标签1</option>
-									<option value="77">标签2</option>
-									<option value="77">标签3</option>
-									<option value="77">标签4</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="input-group filter-select">
-								<span class="input-group-addon">门店状态</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">开启</option>
-									<option value="77">关闭</option>
+								<select id="areaList" class="form-control">
+									<option value="">全部</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="input-group filter-select">
 								<span class="input-group-addon">门市形态</span>
-								<select name="" class="form-control">
-									<option value="77">请选择</option>
-									<option value="77">开启</option>
-									<option value="77">关闭</option>
+								<select id="storePropertys" class="form-control">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="input-group filter-select">
+								<span class="input-group-addon">门店状态</span>
+								<select id="storeStatus" class="form-control">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="input-group filter-select">
+								<span class="input-group-addon">门店类型</span>
+								<select id="storeType" class="form-control">
+									<option value="">全部</option>
 								</select>
 							</div>
 						</div>
@@ -202,26 +192,31 @@
 					<!--查询条件-->
 					<!--会员数据-->
 					<div class="row vip-wrapper" style="background: #fff;">
-						<div class="col-md-12 col-sm-12" style="overflow-x: scroll;z-index: 9;">
+                        <div class="result-title">
+                            <p style="line-height: 40px;color: #fff;padding-left: 20px;">当前展示的为<span id="tagTitle">全部</span>的数据</p>
+                        </div>
+						<div class="col-md-12 col-sm-12" style="z-index: 9;">
 							<div class="vip-container">
-								<table class="table table-bordered table-hover">
-									<thead>
-										<tr style="text-align: center">
-											<th>门店名称</th>
-											<th>门店代码</th>
-											<th>经销商代码</th>
-											<th>SBU</th>
-											<th>服务态度评价分</th>
-											<th>技师水平评价分</th>
-											<th>评价内容</th>
-											<th>技师账号</th>
-											<th>评价会员账号</th>
-                                            <th>评价时间</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr style="text-align: center">
+                                                <th>门店名称</th>
+                                                <th>门店代码</th>
+                                                <th>经销商代码</th>
+                                                <th>SBU</th>
+                                                <th>服务态度评价分</th>
+                                                <th>技师水平评价分</th>
+                                                <th>评价内容</th>
+                                                <th>技师账号</th>
+                                                <th>评价会员账号</th>
+                                                <th>评价时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
 							</div>
 						</div>
 						<div class="col-md-12 page-container">
@@ -239,223 +234,206 @@
 			<!--右侧内容结束-->
 		</div>
 		<script>
-			var data = {
-                "result":"1",
-                "count":"878445",
-                "list":[
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "sbuCode":"GCK",
-                        "service":"7.5",
-                        "person":"4.5",
-                        "content":"很好,很不错!",
-                        "personNumber":"789456",
-                        "userName":"林子",
-                        "date":"20160515"
-                    },
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "SBU":"GCK",
-                        "serviceValue":"7.5",
-                        "personValue":"4.5",
-                        "pingJiaContent":"很好,很不错!",
-                        "personNumber":"789456",
-                        "pingJiaNumber":"林子",
-                        "pingJiaDate":"20160515"
-                    },
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "SBU":"GCK",
-                        "serviceValue":"7.5",
-                        "personValue":"4.5",
-                        "pingJiaContent":"很好,很不错!",
-                        "personNumber":"789456",
-                        "pingJiaNumber":"林子",
-                        "pingJiaDate":"20160515"
-                    },
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "SBU":"GCK",
-                        "serviceValue":"7.5",
-                        "personValue":"4.5",
-                        "pingJiaContent":"很好,很不错!",
-                        "personNumber":"789456",
-                        "pingJiaNumber":"林子",
-                        "pingJiaDate":"20160515"
-                    },
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "SBU":"GCK",
-                        "serviceValue":"7.5",
-                        "personValue":"4.5",
-                        "pingJiaContent":"很好,很不错!",
-                        "personNumber":"789456",
-                        "pingJiaNumber":"林子",
-                        "pingJiaDate":"20160515"
-                    },
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "SBU":"GCK",
-                        "serviceValue":"7.5",
-                        "personValue":"4.5",
-                        "pingJiaContent":"很好,很不错!",
-                        "personNumber":"789456",
-                        "pingJiaNumber":"林子",
-                        "pingJiaDate":"20160515"
-                    },
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "SBU":"GCK",
-                        "serviceValue":"7.5",
-                        "personValue":"4.5",
-                        "pingJiaContent":"很好,很不错!",
-                        "personNumber":"789456",
-                        "pingJiaNumber":"林子",
-                        "pingJiaDate":"20160515"
-                    },
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "SBU":"GCK",
-                        "serviceValue":"7.5",
-                        "personValue":"4.5",
-                        "pingJiaContent":"很好,很不错!",
-                        "personNumber":"789456",
-                        "pingJiaNumber":"林子",
-                        "pingJiaDate":"20160515"
-                    },
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "SBU":"GCK",
-                        "serviceValue":"7.5",
-                        "personValue":"4.5",
-                        "pingJiaContent":"很好,很不错!",
-                        "personNumber":"789456",
-                        "pingJiaNumber":"林子",
-                        "pingJiaDate":"20160515"
-                    },
-                    {
-                        "storeName":"捷安特来广营专卖店",
-                        "storeCode":"123456",
-                        "dealerCode":"888888",
-                        "SBU":"GCK",
-                        "serviceValue":"7.5",
-                        "personValue":"4.5",
-                        "pingJiaContent":"很好,很不错!",
-                        "personNumber":"789456",
-                        "pingJiaNumber":"林子",
-                        "pingJiaDate":"20160515"
-                    }
-                ]
-            }
-            //点击查看详细会员信息
-            function readMore(index){
-                $(".moreInfo-wrapper").addClass("open-more").fadeIn(500);
-                var thisData = data.pingJiaData[index];
-                console.log(thisData)
-                var arr = [];
-                for( var v in thisData ){
-                    arr.push(thisData[v]);
-                }
-                for(var j = 0;j < arr.length;j++){
-                    if(arr[j] instanceof Array){
-                        for(var i = 0; i < arr[j].length;i++){
-                            $(".moreInfo-wrapper table tr").eq(j).children("td").html("empty");
-                        }
-                    }else{
-                        $(".moreInfo-wrapper table tr").eq(j).children("td").html(arr[j]);
-                    }
-                    if(j == 4){
-                        $(".moreInfo-wrapper table tr").eq(j).children("td").html("<img src='"+arr[j]+"' width='80'/>");
-                    }
-                }
-            }
-			function VipData(){
-                //请求数据,会员总数,
-                var vipCount;
+            //根据时间段,区域(不同角色看到不同的区域),门店类型,门店状态,门市形态做筛选
+			function setEvalusteData() {//评价
+                //请求数据,评价总数,
+                var evalCount;
                 //当前页数
-				var nowPage;
-				//总页数
-				var allPage;
-				//页面是否初始化
-				var isStart = true;
-				if(isStart){
+                var nowPage;
+                //总页数
+                var allPage;
+                //存储评论列表数据
+                var evalData = null;
+                //页面是否初始化
+                var isStart = true;
+                //存储筛选条件
+                var filterData = null;
+                //当前筛选条件
+                var filter = {
+                    dateArea:getDefaultDate(),
+                    userId:"721048",
+                    page:nowPage,
+                    pageNum:10,
+                    rolecode:"",
+                    shopPro:"",
+                    storeStatus:"",
+                    shopType:""
+                };
+                if (isStart) {
                     nowPage = 1;
                     getAjaxData();
+                    getFilterData();
                 }
                 //选页
-                window.selectPage = function (n){
-					//console.log(88)
-                    cutPage("596653",n);
-                }
+                window.selectPage = function (n) {
+                    showLoading(true);
+                    cutPage(allPage, n);
+                    filter.page = n;
+                    nowPage = n;
+                    getAjaxData();
+                };
+
                 //获取后台数据,页面初始化
-				function getAjaxData(){
-//                    $.ajax({
-//						url:"http://mobile.72bike.com/open/fenxiang/we_chat.action",
-//						data:"",
-//						ansyc:false,
-//						dataType:"json",
-//						success:function (result){
-//						    vipCount = result;
+                function getAjaxData() {
+                    $.ajax({
+                        url: "http://192.168.9.20:8080/giantService/storeEva/storeEvaList",
+                        data: {
+                            userId: filter.userId,
+                            page: filter.page,
+                            pageNum: filter.pageNum,
+                            dateArea: filter.dateArea,
+                            rolecode: filter.rolecode,
+                            shopPro: filter.shopPro,
+                            storeStatus: filter.storeStatus,
+                            shopType: filter.shopType
+                        },
+                        async: false,
+                        dataType: "json",
+                        type: "get",
+                        beforeSend:function (){
+                            showLoading(true);
+                        },
+                        success: function (result) {
+                            console.log(result)
+                            showLoading(false);//隐藏loading动画
+                            evalData = result;//赋值给evalData;
+                            evalCount = evalData.count;
+                            allPage = Math.ceil(evalCount / 10);
+                            cutPage(allPage, nowPage);
                             showData();
-                            cutPage("596653",nowPage)
-//						    console.log(vipCount)
-//						}
-//					});
-				}
-				//展示数据
-                function showData() {
-                    var pageData =data.pingJiaData;
-                    for(var i = 0;i < pageData.length;i++){
-                        var tableList = $("<tr style=\"text-align: center;\">" +
-                            "<td>"+pageData[i].storeName+"</td>" +
-                            "<td>"+pageData[i].storeCode+"</td>" +
-                            "<td>"+pageData[i].dealerCode+"</td>" +
-                            "<td>"+pageData[i].SBU+"</td>" +
-                            "<td>"+pageData[i].serviceValue+"</td>" +
-                            "<td>"+pageData[i].personValue+"</td>" +
-                            "<td>"+pageData[i].pingJiaContent+"</td>" +
-                            "<td>"+pageData[i].personNumber+"</td>" +
-                            "<td>"+pageData[i].pingJiaNumber+"</td>" +
-                            "<td>"+pageData[i].pingJiaDate+"</td>" +
-                            "</tr>");
-                        $(".vip-container table tbody").append(tableList);
-                    }
-                    console.log(989)
+                        }
+                    });
                 }
-				//分页
-				function cutPage(p,n){
-					//获取当前页数
-					p = Math.ceil(p/10);
-					if(n <= 4 && n != "" && n >0){
-						$(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage("+(n-1)+")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\" onclick='selectPage(2)'>2</a></li><li><a href=\"javascript:;\" onclick='selectPage(3)'>3</a></li><li><a href=\"javascript:;\" onclick='selectPage(4)'>4</a></li><li><a href=\"javascript:;\" onclick='selectPage(5)'>5</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\"onclick='selectPage("+p+")'>"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage("+(n+1)+")'><span aria-hidden=\"true\">下一页</span></a></li>");
-						$(".page-container .pagination li").eq(n).addClass("active");
-					}else if(n > 4 && n <= (p-4)){
-						$(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage("+(n-1)+")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(n-1)+")'>"+(n-1)+"</a></li><li class=\"active\"><a href=\"javascript:;\" onclick='selectPage("+n+")'>"+ n +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(n+1)+")'>"+(n+1)+"</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage("+p+")'>"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage("+(n+1)+")'><span aria-hidden=\"true\">下一页</span></a></li>");
-					}else if(n > (p-4) && n <= p){
-						$(".page-container .pagination").html(" <li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage("+(n-1)+")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-4)+")'>"+ (p-4) +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-3)+")'>"+ (p-3) +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-2)+")'>"+ (p - 2) +"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+(p-1)+")'>"+(p-1)+"</a></li><li><a href=\"javascript:;\" onclick='selectPage("+p+")'>"+p+"</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage("+(n+1)+")'><span aria-hidden=\"true\">下一页</span></a></li>");
-						$(".page-container .pagination li").eq(7-(p-n)).addClass("active");
-					}
-				}
+
+                //展示数据
+                function showData() {
+                    var pageData = evalData.list;
+                    var tempList = [];
+                    for (var i = 0; i < pageData.length; i++) {
+                        var temp = $("<tr style=\"text-align: center;\">" +
+                            "<td>" + pageData[i].storeName + "</td>" +
+                            "<td>" + pageData[i].storeCode + "</td>" +
+                            "<td>" + pageData[i].dealerCode + "</td>" +
+                            "<td>" + pageData[i].sbuCode + "</td>" +
+                            "<td>" + pageData[i].service + "</td>" +
+                            "<td>" + pageData[i].person + "</td>" +
+                            "<td>" + pageData[i].content + "</td>" +
+                            "<td>" + pageData[i].personNumber + "</td>" +
+                            "<td>" + pageData[i].userName + "</td>" +
+                            "<td>" + pageData[i].date + "</td>" +
+                            "</tr>");
+                        tempList.push(temp);
+                    }
+                    $(".vip-container table tbody").empty().append(tempList);
+                }
+
+                //分页
+                function cutPage(p, n) {
+                    if(p >= 0 && p <= 5){
+                        if(p == 1 || p == 0){
+                            $(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage(" + (n - 1) + ")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage(" + (n + 1) + ")'><span aria-hidden=\"true\">下一页</span></a></li>");
+                            $(".page-container .pagination li").eq(n).addClass("active");
+                        }else if(p == 2){
+                            $(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage(" + (n - 1) + ")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\" onclick='selectPage(2)'>2</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage(" + (n + 1) + ")'><span aria-hidden=\"true\">下一页</span></a></li>");
+                            $(".page-container .pagination li").eq(n).addClass("active");
+                        }else if(p == 3){
+                            $(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage(" + (n - 1) + ")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\" onclick='selectPage(2)'>2</a></li><li><a href=\"javascript:;\" onclick='selectPage(3)'>3</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage(" + (n + 1) + ")'><span aria-hidden=\"true\">下一页</span></a></li>");
+                            $(".page-container .pagination li").eq(n).addClass("active");
+                        }else if(p == 4){
+                            $(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage(" + (n - 1) + ")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\" onclick='selectPage(2)'>2</a></li><li><a href=\"javascript:;\" onclick='selectPage(4)'>3</a></li><li><a href=\"javascript:;\" onclick='selectPage(4)'>4</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage(" + (n + 1) + ")'><span aria-hidden=\"true\">下一页</span></a></li>");
+                            $(".page-container .pagination li").eq(n).addClass("active");
+                        }else if(p == 5){
+                            $(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage(" + (n - 1) + ")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\" onclick='selectPage(2)'>2</a></li><li><a href=\"javascript:;\" onclick='selectPage(3)'>3</a></li><li><a href=\"javascript:;\" onclick='selectPage(4)'>4</a></li><li><a href=\"javascript:;\" onclick='selectPage(5)'>5</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage(" + (n + 1) + ")'><span aria-hidden=\"true\">下一页</span></a></li>");
+                            $(".page-container .pagination li").eq(n).addClass("active");
+                        }
+                    }else if(p > 5){
+                        if (n <= 4 && n != "" && n > 0) {
+                            $(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage(" + (n - 1) + ")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\" onclick='selectPage(2)'>2</a></li><li><a href=\"javascript:;\" onclick='selectPage(3)'>3</a></li><li><a href=\"javascript:;\" onclick='selectPage(4)'>4</a></li><li><a href=\"javascript:;\" onclick='selectPage(5)'>5</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\"onclick='selectPage(" + p + ")'>" + p + "</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage(" + (n + 1) + ")'><span aria-hidden=\"true\">下一页</span></a></li>");
+                            $(".page-container .pagination li").eq(n).addClass("active");
+                        } else if (n > 4 && n <= (p - 4)) {
+                            $(".page-container .pagination").html("<li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage(" + (n - 1) + ")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage(" + (n - 1) + ")'>" + (n - 1) + "</a></li><li class=\"active\"><a href=\"javascript:;\" onclick='selectPage(" + n + ")'>" + n + "</a></li><li><a href=\"javascript:;\" onclick='selectPage(" + (n + 1) + ")'>" + (n + 1) + "</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage(" + p + ")'>" + p + "</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage(" + (n + 1) + ")'><span aria-hidden=\"true\">下一页</span></a></li>");
+                        } else if (n > (p - 4) && n <= p) {
+                            $(".page-container .pagination").html(" <li><a href=\"javascript:;\" aria-label=\"Previous\" onclick='selectPage(" + (n - 1) + ")'><span aria-hidden=\"true\">上一页</span></a></li><li><a href=\"javascript:;\" onclick='selectPage(1)'>1</a></li><li><a href=\"javascript:;\">...</a></li><li><a href=\"javascript:;\" onclick='selectPage(" + (p - 4) + ")'>" + (p - 4) + "</a></li><li><a href=\"javascript:;\" onclick='selectPage(" + (p - 3) + ")'>" + (p - 3) + "</a></li><li><a href=\"javascript:;\" onclick='selectPage(" + (p - 2) + ")'>" + (p - 2) + "</a></li><li><a href=\"javascript:;\" onclick='selectPage(" + (p - 1) + ")'>" + (p - 1) + "</a></li><li><a href=\"javascript:;\" onclick='selectPage(" + p + ")'>" + p + "</a></li><li><a href=\"javascript:;\" aria-label=\"Next\" onclick='selectPage(" + (n + 1) + ")'><span aria-hidden=\"true\">下一页</span></a></li>");
+                            $(".page-container .pagination li").eq(7 - (p - n)).addClass("active");
+                        }
+                    }
+                }
+
+                //获取筛选条件
+                function getFilterData() {
+                    $.ajax({
+                        url: "http://192.168.9.20:8080/giantService/storeEva/conditionEva",
+                        data: {
+                            userId: "721048"
+                        },
+                        async: false,
+                        dataType: "json",
+                        type: "get",
+                        success: function (resultData) {
+                            if (resultData.result == 1) {
+                                filterData = resultData;
+                                console.log(filterData)
+                                //添加区域条件
+                                setFilterData($("#areaList"), filterData.areaList);
+                                //添加门市形态
+                                setFilterData($("#storePropertys"), filterData.storePropertys);
+                                //添加门店类型
+                                setFilterData($("#storeType"), filterData.storeTypes);
+                                //添加门店状态
+                                setFilterData($("#storeStatus"), filterData.storeStatus);
+                            } else {
+                                alert("获取数据失败!result=0!");
+                            }
+                        },
+                        error: function (error) {
+                            alert("获取数据失败!请重新刷新网页!");
+                        }
+                    });
+                }
+
+                //设置筛选条件
+                function setFilterData(ele, aData) {
+                    //设置区域条件
+                    var tempList = [];
+                    for (var i = 0; i < aData.length; i++) {
+                        if(typeof aData[i] == "object"){
+                            var temp = $("<option value='"+aData[i].dictCode+"'>" + aData[i].dictName + "</option>");
+
+                            tempList.push(temp);
+                        }else{
+                            var temp = $("<option value='"+aData[i]+"'>" + aData[i] + "</option>");
+
+                            tempList.push(temp);
+                        }
+                    }
+                    ele.append(tempList);
+                }
+                //设置默认时间段
+                function getDefaultDate(){
+                    var dateArea;
+                    var startDate = moment().subtract(30,'days').format("YYYYMMDD");
+                    var endDate = moment().subtract(1,'days').format("YYYYMMDD");
+                    dateArea = startDate+","+endDate;
+                    return dateArea;
+                }
+                //是否显示loading动画
+                function showLoading(y){
+                    if(y){
+                        $(".loading-wrapper").show();
+                    }else{
+                        $(".loading-wrapper").hide();
+                    }
+                }
+                $(".search-btn .btn").click(function (){
+                    filter.rolecode = $("#areaList").val();
+                    filter.shopPro = $("#storePropertys").val();
+                    filter.storeStatus = $("#storeStatus").val();
+                    filter.shopType = $("#storeType").val();
+                    nowPage = 1;
+                    getAjaxData();
+                });
 			}
-            VipData();
+            setEvalusteData();
 		</script>
 	</body>
 </html>

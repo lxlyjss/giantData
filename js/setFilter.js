@@ -155,7 +155,7 @@ function setFilterProducts(){
     // });
     function setResult(role,area){
         switch (role){
-            case "all":{//总公司角色
+            case "admin":{//总公司角色
                 //产品销售数据页面,总公司角色下区域的筛选条件为所有经销商.
                 if($("body").hasClass("products-data2") && area != null && area != ""){
                     //隐藏门店选项

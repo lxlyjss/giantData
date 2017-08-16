@@ -31,7 +31,7 @@
                 $('#dateInput').daterangepicker({
                     //最大时间
                     maxDate: moment().subtract(1,'days'),
-                    startDate: moment().subtract(30,'days'),
+                    startDate: moment().subtract(90,'days'),
                     endDate: moment().subtract(1,'days'),
                     locale: {
                         format : 'YYYY/MM/DD',
@@ -49,6 +49,9 @@
 		</script>
 	</head>
 	<body class="products-data1">
+		<div class="loading-wrapper" style="display: block;">
+			<div class="spinner"></div>
+		</div>
 		<div id="page">
 			<div id="aside">
 				<div class="navbar">
@@ -122,7 +125,7 @@
                             </a>
                             <ul class="child-slide-menu">
                                 <li>
-                                    <a href="storeList.html">服务评价列表</a>
+                                    <a href="service-list.html">服务评价列表</a>
                                 </li>
                                 <li>
                                     <a href="storePoint.html">通路积分列表</a>
@@ -173,25 +176,16 @@
 						<div class="col-md-3 col-sm-4">
 							<div class="input-group filter-select">
 								<span class="input-group-addon">品牌</span>
-								<select name="" class="form-control">
-									<option value="77">全部</option>
-									<option value="77">捷安特自行车</option>
-									<option value="77">莫曼顿自行车</option>
-									<option value="77">liv自行车</option>
-									<option value="77">捷安特电动车</option>
-									<option value="77">莫曼顿电动车</option>
+								<select id="brandList" class="form-control">
+									<option value="">全部</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-md-3 col-sm-4">
 							<div class="input-group filter-select">
 								<span class="input-group-addon">车系</span>
-								<select name="" class="form-control">
-									<option value="77">全部</option>
-									<option value="77">车系1</option>
-									<option value="77">车系2</option>
-									<option value="77">车系3</option>
-									<option value="77">车系4</option>
+								<select id="bikelineId" class="form-control">
+									<option value="">全部</option>
 								</select>
 							</div>
 						</div>
@@ -211,10 +205,10 @@
 					</div>
 					<!--数据表-->
 					<!--查询条件-->
-					<div class="row search-content">
+					<div class="row search-content sbu-type">
 						<div class="col-md-3 col-sm-4">
-							<button class="btn btn-primary">SBU</button>
-							<button class="btn btn-default">经销商</button>
+							<button class="btn btn-primary" id="sbuWeidu">SBU</button>
+							<button class="btn btn-default" id="dealerWeidu">经销商</button>
 						</div>
 						<div class="col-md-3 col-sm-4">
 

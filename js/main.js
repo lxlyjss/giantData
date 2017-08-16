@@ -8,6 +8,7 @@ $(function (){
             roleImg;//用户头像
         var roleArea = [];//角色管辖区域
 		var token = $.fn.getCookie("access_token");
+		var role = $.fn.getCookie("role");//获取角色
 		var role_code = $.fn.getCookie("role_code");//获取用户角色code
         if(token){
             // $.ajax({
@@ -20,10 +21,10 @@ $(function (){
                     var data = {
                         "_status":true,
                         "_user":{
-                            "username":"大熊猫",
+                            "username":"本地测试号",
                             "role_code":"sbuCode",
-                            "id":"555555",
-                            "userImg":"img/ym.jpg"
+                            "id":"656409",
+                            "userImg":"img/img.jpg"
                         }
                     };
                     if(data._status == true){//判断该用户已登录
@@ -31,9 +32,11 @@ $(function (){
                         userId = data._user.id;//用户id
                         roleImg = data._user.userImg;//用户头像
                         setRoleInfo(name,roleImg,role_code);//设置用户显示
+
                         //判断是会员页面还是产品页面
                         if($("body").hasClass("vip-list") || $("body").hasClass("vip-from") || $("body").hasClass("vip-change")){//会员页面
-                            //setFilterVip(userId);//设置会员页面下筛选条件
+                            setFilterVip(userId);//设置会员页面下筛选条件
+                            $.fn.getAndShow(userId);//获取数据并展示数据
                         }else if($("body").hasClass("products-list") || $("body").hasClass("products-data1") || $("body").hasClass("products-data2")){//产品页面
                             //setFilterProducts(userId);//设置产品页面下的筛选条件
                         }

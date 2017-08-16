@@ -129,6 +129,8 @@ $(function (){
                 $(".loading-wrapper").hide();
                 resultData = data;
                 filterData = data.brandList;
+                console.log(resultData);
+                console.log(filter);
                 setResultData(resultData,isDiejia);
                 if(isSetFilter == false){
                     setFilterData();//设置筛选条件
@@ -145,42 +147,61 @@ $(function (){
     }
 	//拆分数据
     function setResultData(data,isDiejia){
-        var xA = [];
         for(var i = 0; i < data.list.length;i++){
             var area = data.list[i].name;//获取经销商或者sbu名字
-            xA.push(area);
-            //根据x轴数据添加到表中
-            finallyData.xAxis.data.push(area);
+            finallyData.xAxis.data.push(area);//给X轴写入数据
         }
-
-        //查找所有类型
-        var nameList = [];
-        for(var i = 0; i < data.list.length;i++){
-            for(var j = 0; j < data.list[i].list.length;j++){
-                if(nameList.indexOf(data.list[i].list[j].name) == -1){
-                    nameList.push(data.list[i].list[j].name);
-                }
-            }
-        }
-        //先将所有数据都置为0
-        var allData = [];
-        for(var i = 0; i < nameList.length;i++){
-            var aData = {
-                "brand":nameList[i],
+        //根据x轴数据添加到表中
+        var allData= [
+            {
+                "brand":"莫曼顿自行车",
                 "data":[]
-            };
-            for(var j = 0; j < xA.length;j++){
-                aData.data.push(0);
+            },
+            {
+                "brand":"liv自行车",
+                "data":[]
+            },
+            {
+                "brand":"捷安特自行车",
+                "data":[]
+            },
+            {
+                "brand":"莫曼顿电动车",
+                "data":[]
+            },
+            {
+                "brand":"捷安特电动车",
+                "data":[]
             }
-            allData.push(aData);
+        ];
+        //先将所有数据都置为0
+        for(var i = 0; i < 5;i++){
+            for(var j = 0; j < data.list.length;j++){
+                allData[i].data.push(0);
+            }
         }
         //有数据的就把数据置为传入的数据
-        for(var j = 0; j < data.list.length;j++){//先遍历外层所有区域的数据  3
-            for(var k = 0; k < data.list[j].list.length;k++){//在遍历内层list数据  不固定
-                for(var h = 0; h < allData.length;h++){
-                    if(data.list[j].list[k].name == allData[h].brand){
-                        allData[h].data[j] = data.list[j].list[k].count;
-                    }
+        for(var j = 0; j < data.list.length;j++){//先遍历外层所有区域的数据
+            for(var k = 0; k < data.list[j].list.length;k++){//在遍历内层list数据
+                //code是1,type是1,获得品牌为莫曼顿自行车;
+                if(data.list[j].list[k].code == "1" && data.list[j].list[k].type == "1"){
+                    allData[0].data[j] = data.list[j].list[k].count;
+                }
+                //code是2,type是1,获得品牌为liv自行车;
+                if(data.list[j].list[k].code == "2" && data.list[j].list[k].type == "1"){
+                    allData[1].data[j] = data.list[j].list[k].count;
+                }
+                //code是3,type是1,获得品牌为捷安特自行车;
+                if(data.list[j].list[k].code == "3" && data.list[j].list[k].type == "1"){
+                    allData[2].data[j] = data.list[j].list[k].count;
+                }
+                //code是1,type是2,获得品牌为莫曼顿电动车;
+                if(data.list[j].list[k].code == "1" && data.list[j].list[k].type == "2"){
+                    allData[3].data[j] = data.list[j].list[k].count;
+                }
+                //code是2,type是2,获得品牌为捷安特电动车;
+                if(data.list[j].list[k].code == "2" && data.list[j].list[k].type == "2"){
+                    allData[4].data[j] = data.list[j].list[k].count;
                 }
             }
         }
@@ -204,8 +225,8 @@ $(function (){
     //展示数据
     function showCharts(){
         var newData = $.extend(true,optionData,finallyData);
-        myEcharts.clear();
         myEcharts.setOption(newData);
+        console.log(newData);
         setTimeout(function (){
             myEcharts.resize();
         },200);
@@ -407,10 +428,10 @@ $(function (){
         //点击某个sbu获取的是他下面所有经销商的数据;
         if(index == 2){
             //初始化数据
-            $(".sbu-type").hide();
             setDefaultData();
             filter.sbuCode = roleCode.toLowerCase();
             filter.dimension = "dealer";
+            console.log(filter);
             getAjaxData();
             index++;
         }
